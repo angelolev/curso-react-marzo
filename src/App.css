@@ -1,0 +1,31 @@
+main {
+  max-width: 1110px;
+  margin: 0 auto;
+}
+
+.new-arrivals h2 {
+  text-transform: uppercase;
+  font-weight: 900;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 38px;
+}
+
+.new-arrivals .list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: end;
+}
+
+@media (min-width: 768px) {
+  .new-arrivals .list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .new-arrivals .list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

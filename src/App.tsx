@@ -1,4 +1,4 @@
-import "./App.css";
+// import "./App.css";
 import { ProductCard } from "./components";
 import { ProductProps } from "./types/product";
 import { useFetch } from "./hooks/useFetch";
@@ -19,10 +19,12 @@ function App() {
   }
 
   return (
-    <main>
+    <main className="max-w-[1110px] mx-auto">
       <section className="new-arrivals">
-        <h2>New Arrivals</h2>
-        <div className="list">
+        <h2 className="uppercase font-extrabold text-center mb-[30px] text[38px]">
+          New Arrivals
+        </h2>
+        <div className="list grid grid-cols-1 gap-4 items-end md:grid-cols-2 lg:grid-cols-4">
           {products?.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}

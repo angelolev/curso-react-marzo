@@ -1,0 +1,23 @@
+.product-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+}
+
+.product-image img {
+  max-width: 120px;
+}
+
+.product-information h3 {
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 250px;
+}
+
+.product-information p {
+  font-weight: bold;
+  font-size: 22px;
+}
