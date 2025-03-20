@@ -1,41 +1,30 @@
 import "./App.css";
 import { ProductCard } from "./components";
-
-const products = [
-  {
-    id: 0,
-    name: "Producto 01",
-    price: 240,
-  },
-  {
-    id: 1,
-    name: "Producto 02",
-    price: 200,
-  },
-  {
-    id: 2,
-    name: "Producto 03",
-    price: 140,
-  },
-  {
-    id: 3,
-    name: "Producto 04",
-    price: 190,
-  },
-];
+import { ProductProps } from "./types/product";
+import { useFetch } from "./hooks/useFetch";
 
 function App() {
+  const {
+    data: products,
+    error,
+    loading,
+  } = useFetch<ProductProps[]>("https://fakestoreapi.com/products");
+
+  if (loading) {
+    return <p>Cargando productos...</p>;
+  }
+
+  if (error) {
+    return <p>Ocurrio un error</p>;
+  }
+
   return (
     <main>
       <section className="new-arrivals">
         <h2>New Arrivals</h2>
         <div className="list">
-          {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              name={product.name}
-              price={product.price}
-            />
+          {products?.map((product) => (
+            <ProductCard key={product.id} {...product} />
           ))}
         </div>
       </section>

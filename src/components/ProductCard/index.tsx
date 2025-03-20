@@ -1,18 +1,17 @@
-import productImage from "../../assets/default-product-image.png";
+import { ProductProps } from "../../types/product";
 
-interface ProductCardProps {
-  name: string;
-  price: number;
-}
-
-export default function ProductCard({ name, price }: ProductCardProps) {
+export default function ProductCard({ title, price, image }: ProductProps) {
   return (
     <div className="product-card">
       <div className="product-image">
-        <img src={productImage} alt="Imagen de producto" />
+        <img
+          src={image}
+          alt="Imagen de producto"
+          style={{ maxWidth: "120px" }}
+        />
       </div>
       <div className="product-information">
-        <h3>{name}</h3>
+        <h3>{title}</h3>
         <p>${price}</p>
       </div>
     </div>
