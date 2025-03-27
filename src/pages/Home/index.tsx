@@ -1,9 +1,8 @@
-// import "./App.css";
-import { ProductCard } from "./components";
-import { ProductProps } from "./types/product";
-import { useFetch } from "./hooks/useFetch";
+import { ProductCard, Layout } from "../../components";
+import { ProductProps } from "../../types/product";
+import { useFetch } from "../../hooks/useFetch";
 
-function App() {
+export default function Home() {
   const {
     data: products,
     error,
@@ -19,7 +18,7 @@ function App() {
   }
 
   return (
-    <main className="max-w-[1110px] mx-auto">
+    <Layout>
       <section className="new-arrivals">
         <h2 className="uppercase font-extrabold text-center mb-[30px] text[38px]">
           New Arrivals
@@ -30,8 +29,6 @@ function App() {
           ))}
         </div>
       </section>
-    </main>
+    </Layout>
   );
 }
-
-export default App;
