@@ -2,14 +2,23 @@ import { useParams } from "react-router";
 import { useFetch } from "../../hooks/useFetch";
 import { ProductProps } from "../../types/product";
 import { Layout } from "../../components";
+import { useContext } from "react";
+import { ShoppingCartContext } from "../../context";
+
 export default function ProductDetailPage() {
   const { id } = useParams();
+  const context = useContext(ShoppingCartContext);
 
   const {
     data: product,
     loading,
     error,
   } = useFetch<ProductProps>(`https://fakestoreapi.com/products/${id}`);
+
+  const addToCart = (product: ProductProps) => {
+    //logica de validacion
+    context.setCartProducts([...context.cartProducts, product]);
+  };
 
   if (loading) {
     return <p>Cargando producto...</p>;
@@ -36,7 +45,7 @@ export default function ProductDetailPage() {
           <div className="my-6">
             <button
               className="bg-black text-white px-4 py-2 rounded-full cursor-pointer"
-              onClick={() => console.log("agregado")}
+              onClick={() => product && addToCart(product)}
             >
               Add to cart
             </button>
