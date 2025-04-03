@@ -1,8 +1,32 @@
 import { ProductCard, Layout } from "../../components";
 import { ProductProps } from "../../types/product";
 import { useFetch } from "../../hooks/useFetch";
+import { useEffect, useState } from "react";
+import { getCollection } from "../../firebase/firestore";
 
 export default function Home() {
+  const [productsFirebase, setProductsFirebase] = useState<ProductProps[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        // setLoading(true);
+        const data = await getCollection<ProductProps[]>("products");
+        setProductsFirebase(data);
+        // setError(null);
+      } catch (err) {
+        console.error("Error fetching todos:", err);
+        // setError("Failed to load todos");
+      } finally {
+        // setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  console.log(productsFirebase, "productos de firebase");
+
   const {
     data: products,
     error,
